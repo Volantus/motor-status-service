@@ -46,7 +46,7 @@ class MotorStatusRepositoryTest extends MspRepositoryTest
      */
     protected function getCorrectMspResponse(): Response
     {
-        $motors = [1000, 1100, 1200, 1300, 1450, 1500, 1600, 1700, 2000];
+        $motors = [1000, 1100, 1200, 1300, 1450, 1500, 1600, 2000];
         /** @var MotorStatusResponse|\PHPUnit_Framework_MockObject_MockObject $response */
         $response = $this->getMockBuilder(MotorStatusResponse::class)->disableOriginalConstructor()->getMock();
         $response->method('getStatuses')->willReturn($motors);
@@ -59,6 +59,15 @@ class MotorStatusRepositoryTest extends MspRepositoryTest
      */
     protected function getExpectedDecodedResult()
     {
-        return new MotorStatusMessage([0, 0.1, 0.2, 0.3, 0.45, 0.5, 0.6, 0.7, 1]);
+        return new MotorStatusMessage([
+            ['id' => 0, 'pin' => 1, 'power' => 0],
+            ['id' => 1, 'pin' => 2, 'power' => 0.1],
+            ['id' => 2, 'pin' => 3, 'power' => 0.2],
+            ['id' => 3, 'pin' => 4, 'power' => 0.3],
+            ['id' => 4, 'pin' => 5, 'power' => 0.45],
+            ['id' => 5, 'pin' => 6, 'power' => 0.5],
+            ['id' => 6, 'pin' => 7, 'power' => 0.6],
+            ['id' => 7, 'pin' => 8, 'power' => 1],
+        ]);
     }
 }

@@ -36,8 +36,12 @@ class MotorStatusRepository extends MspRepository
     protected function decodeResponse(Response $response)
     {
         $motors = $response->getStatuses();
-        foreach ($motors as &$motorStatus) {
-            $motorStatus = ($motorStatus - 1000) / 1000;
+        foreach ($motors as $i => &$motorStatus) {
+            $motorStatus = [
+                'id'    => $i,
+                'pin'   => $i + 1,
+                'power' => ($motorStatus - 1000) / 1000
+            ];
         }
 
         return new MotorStatus($motors);
