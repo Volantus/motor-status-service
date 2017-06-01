@@ -21,6 +21,20 @@ class MotorStatusRepository extends MspRepository
     protected $priority = 3;
 
     /**
+     * [CleanFlight ID] <=> [Volantus motor ID]
+     *
+     * @var array
+     */
+    private $idMapping = [0 => 0, 1 => 2, 2 => 4, 3 => 7, 4 => 1, 5 => 3, 6 => 5, 7 => 6];
+
+    /**
+     * [CleanFlight ID] <=> [flight controller hardware pin]
+     *
+     * @var array
+     */
+    private $pinMapping = [0 => 1, 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => 6, 6 => 7, 7 => 8];
+
+    /**
      * @return Request
      */
     protected function createMspRequest(): Request
@@ -35,11 +49,13 @@ class MotorStatusRepository extends MspRepository
      */
     protected function decodeResponse(Response $response)
     {
-        $motors = $response->getStatuses();
-        foreach ($motors as $i => &$motorStatus) {
-            $motorStatus = [
-                'id'    => $i,
-                'pin'   => $i + 1,
+        $motors = [];
+
+        foreach ($response->getStatuses() as $i => $motorStatus) {
+            $id = $this->idMapping[$i];
+            $motors[$id] = [
+                'id'    => $id,
+                'pin'   => $this->pinMapping[$i],
                 'power' => ($motorStatus - 1000) / 1000
             ];
         }
