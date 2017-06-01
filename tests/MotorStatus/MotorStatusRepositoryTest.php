@@ -68,6 +68,8 @@ class MotorStatusRepositoryTest extends MspRepositoryTest
             ['id' => 5, 'pin' => 7, 'power' => 0.6],
             ['id' => 6, 'pin' => 8, 'power' => 1],
             ['id' => 7, 'pin' => 4, 'power' => 0.3],
+            ['id' => 8, 'pin' => -1, 'power' => 0.5],
+            ['id' => 9, 'pin' => -1, 'power' => 0.5],
         ]);
     }
 }

@@ -50,6 +50,10 @@ class MotorStatusRepository extends MspRepository
     protected function decodeResponse(Response $response)
     {
         $motors = [];
+        
+        // Dummy vertical motors, until they are really implemented
+        $motors[8] = ['id' => 8, 'pin' => -1, 'power' => 0.5];
+        $motors[9] = ['id' => 9, 'pin' => -1, 'power' => 0.5];
 
         foreach ($response->getStatuses() as $i => $motorStatus) {
             $id = $this->idMapping[$i];
