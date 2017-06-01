@@ -46,7 +46,7 @@ class MotorStatusRepositoryTest extends MspRepositoryTest
      */
     protected function getCorrectMspResponse(): Response
     {
-        $motors = [1000, 1100, 1200, 1300, 1450, 1500, 1600, 2000];
+        $motors = [0, 1100, 1200, 1300, 1450, 1500, 1600, 2000];
         /** @var MotorStatusResponse|\PHPUnit_Framework_MockObject_MockObject $response */
         $response = $this->getMockBuilder(MotorStatusResponse::class)->disableOriginalConstructor()->getMock();
         $response->method('getStatuses')->willReturn($motors);

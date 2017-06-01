@@ -58,10 +58,11 @@ class MotorStatusRepository extends MspRepository
         foreach ($response->getStatuses() as $i => $motorStatus) {
             if (isset($this->idMapping[$i])) {
                 $id = $this->idMapping[$i];
+                $power = ($motorStatus - 1000) / 1000;
                 $motors[$id] = [
                     'id'    => $id,
                     'pin'   => $this->pinMapping[$i],
-                    'power' => ($motorStatus - 1000) / 1000
+                    'power' => $power > 0 ? $power : 0
                 ];
             }
         }
