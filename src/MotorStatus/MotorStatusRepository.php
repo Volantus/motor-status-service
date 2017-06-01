@@ -56,14 +56,16 @@ class MotorStatusRepository extends MspRepository
         $motors[9] = ['id' => 9, 'pin' => -1, 'power' => 0.5];
 
         foreach ($response->getStatuses() as $i => $motorStatus) {
-            $id = $this->idMapping[$i];
-            $motors[$id] = [
-                'id'    => $id,
-                'pin'   => $this->pinMapping[$i],
-                'power' => ($motorStatus - 1000) / 1000
-            ];
+            if (isset($this->idMapping[$i])) {
+                $id = $this->idMapping[$i];
+                $motors[$id] = [
+                    'id'    => $id,
+                    'pin'   => $this->pinMapping[$i],
+                    'power' => ($motorStatus - 1000) / 1000
+                ];
+            }
         }
-        
+
         ksort($motors);
         return new MotorStatus($motors);
     }
