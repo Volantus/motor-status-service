@@ -1,7 +1,10 @@
 <?php
 namespace Volantus\MotorStatusService\Src\MotorStatus;
 
+use Volantus\FlightBase\Src\General\Motor\MotorStatus;
 use Volantus\FlightBase\Src\General\MSP\MspRepository;
+use Volantus\MSPProtocol\Src\Protocol\Request\MotorStatus as MotorStatusRequest;
+use Volantus\MSPProtocol\Src\Protocol\Response\MotorStatus as MotorStatusResponse;
 use Volantus\MSPProtocol\Src\Protocol\Request\Request;
 use Volantus\MSPProtocol\Src\Protocol\Response\Response;
 
@@ -22,16 +25,21 @@ class MotorStatusRepository extends MspRepository
      */
     protected function createMspRequest(): Request
     {
-        // TODO: Implement createMspRequest() method.
+        return new MotorStatusRequest();
     }
 
     /**
-     * @param Response $response
+     * @param MotorStatusResponse|Response $response
      *
-     * @return mixed
+     * @return MotorStatus
      */
     protected function decodeResponse(Response $response)
     {
-        // TODO: Implement decodeResponse() method.
+        $motors = $response->getStatuses();
+        foreach ($motors as &$motorStatus) {
+            $motorStatus = ($motorStatus - 1000) / 1000;
+        }
+
+        return new MotorStatus($motors);
     }
 }
