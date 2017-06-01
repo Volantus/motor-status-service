@@ -8,5 +8,5 @@ $dotEnv = new Dotenv(__DIR__);
 $dotEnv->load();
 
 $application = new Application();
-$application->add(new \Volantus\MotorSatusService\Src\CLI\ServiceCommand());
+$application->add(new \Volantus\MotorStatusService\Src\CLI\ServiceCommand());
 $application->run();

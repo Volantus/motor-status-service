@@ -1,5 +1,5 @@
 <?php
-namespace Volantus\MotorSatusService\Src\CLI;
+namespace Volantus\MotorStatusService\Src\CLI;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
