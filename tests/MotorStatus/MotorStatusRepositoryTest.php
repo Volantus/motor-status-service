@@ -60,14 +60,14 @@ class MotorStatusRepositoryTest extends MspRepositoryTest
     protected function getExpectedDecodedResult()
     {
         return new MotorStatusMessage([
-            ['id' => 0, 'pin' => 1, 'power' => 0],
-            ['id' => 1, 'pin' => 5, 'power' => 0.45],
-            ['id' => 2, 'pin' => 2, 'power' => 0.1],
-            ['id' => 3, 'pin' => 6, 'power' => 0.5],
-            ['id' => 4, 'pin' => 3, 'power' => 0.2],
-            ['id' => 5, 'pin' => 7, 'power' => 0.6],
+            ['id' => 0, 'pin' => 5, 'power' => 0.45],
+            ['id' => 1, 'pin' => 2, 'power' => 0.1],
+            ['id' => 2, 'pin' => 6, 'power' => 0.5],
+            ['id' => 3, 'pin' => 3, 'power' => 0.2],
+            ['id' => 4, 'pin' => 7, 'power' => 0.6],
+            ['id' => 5, 'pin' => 4, 'power' => 0.3],
             ['id' => 6, 'pin' => 8, 'power' => 1],
-            ['id' => 7, 'pin' => 4, 'power' => 0.3],
+            ['id' => 7, 'pin' => 1, 'power' => 0],
             ['id' => 8, 'pin' => -1, 'power' => 0.5],
             ['id' => 9, 'pin' => -1, 'power' => 0.5],
         ]);
